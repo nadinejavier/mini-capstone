@@ -1,3 +1,12 @@
 Rails.application.routes.draw do
-  get "/all_items" => "items#items_method"
+  get "/" => "items#index"
+  get "/items" => "items#index"
+
+  get "/items/new" => "items#new"
+  post "/items" => "items#create"
+
+  get "/items/:id" => "items#show"
+
+  get "/items/:id/edit" => "items#edit"
+  patch "/items" => "items#update"
 end
