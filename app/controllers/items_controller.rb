@@ -22,10 +22,12 @@ class ItemsController < ApplicationController
       price: params[:price],
       description: params[:description],
       image: params[:image])
-    render "create_item.html.erb"
+    flash[:success] = "Item successfully created!"
+    redirect_to "/items/#{@new_item.id}"
   end
 
-  def edit
+  def edit 
+     @item = Item.find(params[:id])
     render "edit.html.erb"
   end 
 
@@ -37,6 +39,14 @@ class ItemsController < ApplicationController
       description: params[:description],
       image: params[:image]
       )
-    render "update.html.erb"
+    flash[:info] = "Item successfully updated!"
+    redirect_to "/items/#{@item.id}"
+  end
+
+  def destroy
+    item = Item.find(params[:id])
+    item.destroy
+    flash[:danger] = "Item successfully deleted!"
+    redirect_to "/items"
   end
 end

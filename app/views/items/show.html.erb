@@ -4,5 +4,11 @@
      <%= @item.name %>
       <%= @item.price%>
      <%=  @item.description %>
-  </h2>
-<button class="btn btn-primary"> Bootstrap Button</button>
+</h2>
+
+<button class="btn btn-primary">  <a href="/items/<%=@item.id%>/edit"> Edit Item </a> </button>
+
+<%= form_tag "/items/#{@item.id}", method: :delete do %>
+<input type="submit" value="DELETE">
+
+<%end%>

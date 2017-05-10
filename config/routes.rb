@@ -8,5 +8,7 @@ Rails.application.routes.draw do
   get "/items/:id" => "items#show"
 
   get "/items/:id/edit" => "items#edit"
-  patch "/items" => "items#update"
+  patch "/items/:id" => "items#update"
+
+  delete "/items/:id" => "items#destroy"
 end
