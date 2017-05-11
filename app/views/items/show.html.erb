@@ -2,9 +2,18 @@
 
 <h2>
      <%= @item.name %>
-      <%= @item.price%>
+     <br>
+     <%= @item.in_stock? %>
+     <br>
+    <h5> Price: <%= @item.price%> </h5>
+      <br>
+     <h5> Sales Tax: <%= @item.tax %> </h5>
+      <br>
+    <h2> <strong> Total: <%= @item.total %> </strong> </h2>
+      <br>
      <%=  @item.description %>
 </h2>
+<p> <%= @item.sale_message %> </p>
 
 <button class="btn btn-primary">  <a href="/items/<%=@item.id%>/edit"> Edit Item </a> </button>
 

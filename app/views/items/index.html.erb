@@ -1,12 +1,12 @@
 <h1> BUY ME! </h1>
 
-<rec
-<div class="row">
+<% @items.each_slice(3) do |three_items| %>
 
-  <% @items.each_slice(3) do |three_items| %>
+  <div class="row">
+   <% three_items.each do |item| %>
   <div class= "col-md-4">
     <div class="well">
-   <a href="/items/<%= item.id%>" > <%= item.name %> </a>
+   <a href="/items/<%= item.id %>" > <%= item.name %> </a>
       <br>
       <img src="<%= item.image %>" width: 200px>
       <br>
@@ -18,6 +18,5 @@
   </div>
     <br>
    <% end%>
-  
-
 </div>
+<% end %>
