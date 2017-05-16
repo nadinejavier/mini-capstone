@@ -24,4 +24,7 @@ class Item < ApplicationRecord
     end
   end
 
+  
+  belongs_to :supplier
+
 end
