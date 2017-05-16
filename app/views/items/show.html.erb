@@ -13,7 +13,8 @@
       <br>
      <%=  @item.description %>
 </h2>
-
+<br>
+<h4> Supplied by: </h4><%= @item.supplier.name %>
 <p> <%= @item.sale_message %> </p>
 
 <button class="btn btn-primary">  <a href="/items/<%=@item.id%>/edit"> Edit Item </a> </button>
