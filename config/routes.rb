@@ -17,5 +17,14 @@ Rails.application.routes.draw do
 
   delete "/items/:id" => "items#destroy"
 
+  get "/items/:id/images/new" => "images#new"
+  post "/items/:id/images" => "images#create"
 
+  get "/signup" => "users#new"
+  post "/users" => "users#create"
+
+  get "/login" => "sessions#new"
+  post "/login" => "sessions#create"
+
+  get "/logout" => "sessions#destroy"
 end

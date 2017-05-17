@@ -11,6 +11,10 @@
       <br>
     <h2> <strong> Total: <%= @item.total %> </strong> </h2>
       <br>
+     <% @item.images.each do |image| %>
+              <img src="<%= image.url %>" alt="<%= @item.name %>" class="img-responsive">
+            <% end %>
+     <br>
      <%=  @item.description %>
 </h2>
 <br>

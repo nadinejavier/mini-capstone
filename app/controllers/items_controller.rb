@@ -42,7 +42,8 @@ class ItemsController < ApplicationController
       name: params[:name],
       price: params[:price],
       description: params[:description],
-      image: params[:image])
+      user_id: current_user.id
+      )
     flash[:success] = "Item successfully created!"
     redirect_to "/items/#{@new_item.id}"
   end

@@ -1,5 +1,9 @@
 class Item < ApplicationRecord
-
+    
+  belongs_to :supplier
+  belongs_to :user
+  has_many :images
+  
   def sale_message
     if price.to_i <= 2
       return "Discount Item!"
@@ -24,8 +28,6 @@ class Item < ApplicationRecord
     end
   end
 
-  
-  belongs_to :supplier
-  has_many :images
+
 
 end

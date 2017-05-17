@@ -10,6 +10,8 @@
       <br>
      <p> Price: </p> <%= item.price%>
       <br>
+        <a href="/items/<%= item.id %>" title="View Product"><img src="<%= item.images.first.url %>" alt="<%= item.name %>" class="img-responsive item_single_image"></a>
+      <br>
      <%=  item.description %>
      <br> 
      </div>

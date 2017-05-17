@@ -19,7 +19,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Brand</a>
+        <a class="navbar-brand" href="/items">The Black Market</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
@@ -30,8 +30,8 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort By <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="/items?sort=price">Price Ascending</a></li>
-              <li><a href="/items/price_desc">Price Descending</a></li>
+              <li><a href="/items?sort=price&&order=ASC">Price Ascending</a></li>
+              <li><a href="/items/?sort=price&&order=DESC">Price Descending</a></li>
               <li><a href="#">Something else here</a></li>
               <li role="separator" class="divider"></li>
               <li><a href="/items/random">Random Item</a></li>
@@ -47,15 +47,22 @@
           <button type="submit" class="btn btn-default">Submit</button>
         </form>
         <ul class="nav navbar-nav navbar-right">
+         <% if current_user %>  
+                <li>Hi, <%= current_user.first_name %></li>
+              <% end %>
           <li><a href="#">Link</a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
+              <li><a href="/signup">Sign up</a></li>
+               <% if current_user = nil%>
+              <li><a href="/login">Log In</a></li>
+              <% end %>
+              <li><a href="#"></a></li>
               <li role="separator" class="divider"></li>
-              <li><a href="#">Separated link</a></li>
+        
+                 <li><a href="/logout">Log Out</a></li>
+              
             </ul>
           </li>
         </ul>
