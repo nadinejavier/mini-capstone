@@ -1,9 +1,12 @@
 class Item < ApplicationRecord
+  has_many :category_items
+  has_many :categories, through: :category_items
     
   belongs_to :supplier
   belongs_to :user
   has_many :images
-  
+  has_many :orders
+  has_many :carted_products
   def sale_message
     if price.to_i <= 2
       return "Discount Item!"

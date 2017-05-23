@@ -1,0 +1,20 @@
+
+<h1>Your Shopping Cart:</h1>
+
+
+<% @carted_products.each do |carted_product| %>
+  <div class="carted_products">
+  <h2> <strong> <%= carted_product.item.name %> </strong> </h2>
+    <br>
+<img src="<%= carted_product.item.images.first.url %>" alt="" class= "carted_img">
+    <br>
+    Price: $<%= carted_product.item.price %>
+    <br>
+    Quantity: <%= carted_product.quantity %>
+  </div>
+  <br>
+<%end%>
+
+<%= form_tag "/orders/#{@order.id}", method: :patch do %>
+  <input type="submit" value="Buy Now!">
+<% end %> 

@@ -1,0 +1,18 @@
+<h1> Your Carted Products: </h1>
+
+<% if  @item.images.first  %>
+<img src="<%= @item.images.first.url %>" alt="">
+<% end %>
+
+<h3> Ordered by: <%= @order.user.email %>
+<h3> Product: <%= @item.name %>
+<h3> Order ID: </h3> <%= @order.id %>
+<h3> Quantity: </h3> <%= @quantity %>
+
+<h3> Subtotal: </h3> <%= @order.subtotal %>
+
+<h3> Tax: </h3> <%= @order.tax %>
+
+<strong> <h2> Total: $ <%= @order.total %> </h2></strong>
+
+<h6> Purchase Time: <%= @item.created_at.strftime("%A, %b %d") %>

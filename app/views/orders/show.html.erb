@@ -1,0 +1,35 @@
+<!-- <h1> Your orders: </h1>
+
+<% if  @item.images.first  %>
+<img src="<%= @item.images.first.url %>" alt="">
+<% end %>
+
+<h3> Ordered by: <%= @order.user.email %>
+<h3> Product: <%= @order.item.name %>
+<h3> Order ID: </h3> <%= @order.id %>
+<h3> Quantity: </h3> <%= @order.quantity %>
+
+<h3> Subtotal: </h3> <%= @order.subtotal %>
+
+<h3> Tax: </h3> <%= @order.quantity %>
+
+<strong> <h2> Total: $ <%= @order.total %> </h2></strong>
+
+<h6> Purchase Time: <%= @order.item.created_at.strftime("%A, %b %d") %> -->
+
+
+
+<h1>Your orders:</h1>
+
+
+<% @order.carted_products.each do |carted_product| %>
+  <p>Item: <%= carted_product.item.name %> </p>
+  <p>Quantity: <%= carted_product.quantity %></p>
+  <br>
+
+<%end%>
+
+  <br>
+  <p>Subtotal: <%= @order.subtotal %></p>
+  <p>Tax: <%= @order.tax %></p>
+  <p>Total: <%= @order.total %></p>

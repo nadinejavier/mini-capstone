@@ -10,6 +10,9 @@ class ItemsController < ApplicationController
     if discount
       @items = Item.where("price <= ?", 10)
     end
+    if params[:category]
+      @items = Category.find_by(title: params[:category]).items
+    end
     render "index.html.erb"
   end
   
