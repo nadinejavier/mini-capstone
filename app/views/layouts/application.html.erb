@@ -26,7 +26,9 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <li class="active"><a href="/items/?discount=true">DISCOUNT ITEMS! <span class="sr-only">(current)</span></a></li>
-          <li><a href="#">Link</a></li>
+            <% if current_user && current_user.admin %>
+              <li><a href="/items/new">Add Item</a></li>
+            <% end %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort By <span class="caret"></span></a>
             <ul class="dropdown-menu">
@@ -51,8 +53,8 @@
         <ul class="nav navbar-nav navbar-right">
          <% if current_user %>  
                 <li>Hi, <%= current_user.first_name %></li>
-              <% end %>
-          <li><a href="#">Link</a></li>
+                <li><a href="/carted_products">Checkout</a></li>
+        <% end %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
             <ul class="dropdown-menu">

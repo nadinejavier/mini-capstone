@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+   before_action :authenticate_user!
+
   # def create 
   #   @quantity = params[:quantity].to_i
   #   item_id = params[:item_id]
@@ -17,13 +19,14 @@ class OrdersController < ApplicationController
   # end
 
   def show
-    @order = Order.find_by(id: params[:id])
-  end
+  @order = Order.find_by(id: params[:id])
+    end
 
   def update
-    @order = Order.find_by(user_id: current_user.id, completed: false)
+    @order = Order.find_by(id: params[:id])
+    calculated_subtotal = 0
     @order.carted_products.each do |carted_product|
-    calculated_subtotal = carted_product.item.price * carted_product.quantity
+    calculated_subtotal += carted_product.item.price * carted_product.quantity
   end
     calculated_tax = calculated_subtotal * 0.09
     calculated_total = calculated_subtotal + calculated_tax
@@ -34,6 +37,7 @@ class OrdersController < ApplicationController
         completed: true
       )
       flash[:success] = "Order Confirmed!"
-      redirect_to "/orders/#{order.id}"
+      redirect_to "/orders/#{@order.id}"
   end
+
 end

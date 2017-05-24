@@ -34,7 +34,7 @@ Rails.application.routes.draw do
   #carted products/checkout
   post "/carted_products" => "carted_products#create"
   get "/carted_products" => "carted_products#index"
-
+  delete "/carted_products/:id" => "carted_products#destroy"
   #orders
  patch "/orders/:id" => "orders#update"
  get "/orders/:id" => "orders#show"

@@ -11,8 +11,9 @@
     Price: $<%= carted_product.item.price %>
     <br>
     Quantity: <%= carted_product.quantity %>
+    <br>
+   <%= button_to "Delete", {action: "destroy", id: carted_product.id}, method: :delete, data: { confirm: "Are you sure?" } %> 
   </div>
-  <br>
 <%end%>
 
 <%= form_tag "/orders/#{@order.id}", method: :patch do %>

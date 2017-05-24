@@ -25,21 +25,23 @@
 <h4> Supplied by: </h4><%= @item.supplier.name %>
 <p> <%= @item.sale_message %> </p>
 <!-- Edit/Delete Buttons -->
-<button class="btn btn-primary">  <a href="/items/<%=@item.id%>/edit"> Edit Item </a> </button>
-
-<%= form_tag "/items/#{@item.id}", method: :delete do %>
-<input type="submit" value="DELETE">
-
+  <% if current_user && current_user.admin %>
+    <button class="btn btn-primary">  <a href="/items/<%=@item.id%>/edit"> Edit Item </a> </button>
+    <%= form_tag "/items/#{@item.id}", method: :delete do %>
+    <input type="submit" value="DELETE">
+  <% end %>
 <%end%>
 <!-- -->
-<%= form_tag "/carted_products", method: :post do %>
+ <% if current_user %>
+    <%= form_tag "/carted_products", method: :post do %>
   <div>
      Quantity: <input type="text" name= "quantity">
   </div>
    <div>
      Item ID: <input type="text" name= "item_id" value="<%= @item.id %>">
   </div>
-   <p> <button type ="submit" class="btn btn-default btn-lg">Add to Cart!</button>
-</p>
+     <p> <button type ="submit" class="btn btn-default btn-lg">Add to Cart!</button>
+    </p>
+  <% end %>
 
 <%end%>

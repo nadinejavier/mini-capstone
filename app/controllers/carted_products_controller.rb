@@ -1,10 +1,11 @@
 class CartedProductsController < ApplicationController
-
+ before_action :authenticate_user!
+ 
   def index 
     @order = Order.find_by(user_id: current_user.id, completed: false)
-     if @order.carted_products 
-      @carted_products = @order.carted_products
-      render "index.html.erb"
+    if @order.carted_products.length > 0 
+        @carted_products = @order.carted_products
+        render "index.html.erb"
     else
       flash[:warning] = "You have nothing in your shopping cart!"
       redirect_to "/"
@@ -12,24 +13,16 @@ class CartedProductsController < ApplicationController
   end
 
   def create
-  @quantity = params[:quantity].to_i
+    @quantity = params[:quantity].to_i
     item_id = params[:item_id]
     @item = Item.find_by(id: params[:item_id])
-
-    # calculated_subtotal = @item.price * @quantity
-    # calculated_tax = calculated_subtotal * 0.09
-    # calculated_total = calculated_subtotal + calculated_tax
-
     @order = Order.find_by(user_id: current_user.id, completed: false)
     
     if @order 
 
-  else
+    else
       @order = Order.create(
         user_id: current_user.id,
-        # subtotal: calculated_subtotal,
-        # tax: calculated_tax,
-        # total: calculated_total,
         completed: false
       )
     end
@@ -38,8 +31,13 @@ class CartedProductsController < ApplicationController
       quantity: @quantity,
       order_id: @order.id
       )
-    flash[:success] = "Carted Item!"
+    flash[:success] = "#{@carted_products.item.name} added to cart!"
     redirect_to "/carted_products"
   end
 
+  def destroy
+    @carted_product = CartedProduct.find_by(id: params[:id])
+    @carted_product.destroy
+    redirect_to "/carted_products"
+  end
 end
